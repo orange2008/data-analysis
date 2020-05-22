@@ -20,40 +20,31 @@ def praw(i): # Print raw string.
     print("Printing...\n") # Print tips and add a new line.
     print(i) # Print
 
-def prg(i): # Print the specified index json.
-    location = input("Content number: ") # Content number.
-    try: # Try to convert location to int instead of string.
-        locate = int(location)
-    except ValueError: # Cannot convert, because it is not a number. Then errored.
-        print("It doesn't a number!") # Friendly error.
-        return False # End function
-    else: # Converted.
-        locate = locate - 1 # The default index is start from 0, instead of 1. So sub 1.
-        if locate < 0:
-            print("Out of range! Printing last...")
-        try: # Check index range.
-            p = i[locate] # Save the specified text to p.
-        except IndexError: # Index out of range.
-            print("Out of range!") # Friendly error.
-            return False # End function
-        else: # Print
-            print(p) # Output
+def prk(i): # Print keys.
+    for k in i.keys(): # Define a for while, store each key to 'k'.
+        print(k) # Print
 
-def traverse(i): # Traverse the entire list.
-    for t in i:
-        print(t + "\n")
-    # End
+def prv(i): # Print values.
+    for v in i.values(): # Define a for while, store each value to 'v'.
+        print(v) # Print
 
+def traverse(i): # Traverse.
+    for k,v in i.items(): # Define a for while, store each key to 'k', value to 'v'.
+        print(k + "\t" + v) # Print
+        
 # User
 print("What do you want to do with " + filename  + "?")
 while True:
     print("1. Print Raw(Not recommended. That will be total mess. And make sure what are you doing.).")
-    print("2. Print text at a specific location.")
-    print("3. Traverse(Default, recommended.).")
+    print("2. Print keys.")
+    print("3. Print values.")
+    print("4. Print Both Keys and Values(Default, recommended.).")
     o = input("--- ") # User input.
     if o == "1": # Logical check, user selection.
         praw(fs)
     elif o == "2":
-        prg(fs)
+        prk(fs)
+    elif o == "3":
+        prv(fs)
     else:
         traverse(fs)
